@@ -4,6 +4,7 @@ require('dotenv').config();
 //prep connection to discord API
 const {Client,GatewayIntentBits} = require('discord.js');
 
+//Picks short random roasts to bake in. This functionality was built to handle larger strings, with this short list of tiny strings it would function better to just add all of them to the prompt.
 const roasts = new Array("Plays to much Runescape", "Got fired from google","is poly but gets no girls", "Plucks hairs from his face","is bad at gaming", "had to much money","is a narcisist","smells bad","has hair that is to long","his farts smell", "watched hentai in a public discord", "hair is unkept");
 var randomIndex = Math.floor(Math.random() * roasts.length);
 var randomString = roasts[randomIndex];
@@ -26,7 +27,7 @@ const openai = new OpenAIApi(configuration);
 
 //check for when a message on discord is sent
 client.on('messageCreate',async function(message){
-    if (message.content.startsWith('/roast ')){
+    if (message.content.startsWith('/roast ')){ //check for the roast command
     try {
         if(message.author.id == client.user.id) return;
         console.log(message.content);
